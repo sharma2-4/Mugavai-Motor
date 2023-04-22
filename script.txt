@@ -1,0 +1,35 @@
+<form id="myForm">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required>
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" required>
+
+  <label for="phone">Phone:</label>
+  <input type="tel" id="phone" name="phone" required>
+
+  <label for="message">Message:</label>
+  <textarea id="message" name="message" required></textarea>
+
+  <button type="submit" id="submit">Submit</button>
+</form>
+
+<script>
+  const form = document.getElementById('myForm');
+  const submitBtn = document.getElementById('submit');
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault(); // Prevent default form submission
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const message = document.getElementById('message').value;
+
+    const data = `Name: ${name}%0AEmail: ${email}%0APhone: ${phone}%0AMessage: ${message}`; // Format data for WhatsApp API
+
+    const url = `https://api.whatsapp.com/send?phone=<admin_number>&text=${data}`; // Replace <admin_number> with the admin's WhatsApp number
+
+    window.open(url); // Open WhatsApp chat window with pre-filled message
+  });
+</script>
